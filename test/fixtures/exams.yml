@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2024-02-08 08:48:01
+  title: MyString
+  coefficient: 9.99
+  subject: one
+
+two:
+  date: 2024-02-08 08:48:01
+  title: MyString
+  coefficient: 9.99
+  subject: two
