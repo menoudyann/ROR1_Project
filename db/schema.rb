@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_074801) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
   create_table "exams", force: :cascade do |t|
     t.datetime "date"
     t.string "title"
@@ -54,11 +54,32 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_074801) do
     t.index ["locality_id"], name: "index_people_on_locality_id"
   end
 
+  create_table "people_has_exams", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "exam_id"
+    t.index ["exam_id"], name: "index_people_has_exams_on_exam_id"
+    t.index ["person_id"], name: "index_people_has_exams_on_person_id"
+  end
+
+  create_table "people_has_subjects", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "subject_id"
+    t.index ["person_id"], name: "index_people_has_subjects_on_person_id"
+    t.index ["subject_id"], name: "index_people_has_subjects_on_subject_id"
+  end
+
   create_table "semesters", force: :cascade do |t|
     t.integer "number"
     t.string "years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "semesters_has_exams", force: :cascade do |t|
+    t.integer "semester_id"
+    t.integer "exam_id"
+    t.index ["exam_id"], name: "index_semesters_has_exams_on_exam_id"
+    t.index ["semester_id"], name: "index_semesters_has_exams_on_semester_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -72,4 +93,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_074801) do
   add_foreign_key "exams", "subjects"
   add_foreign_key "historics", "people", column: "people_id"
   add_foreign_key "people", "localities"
+  add_foreign_key "people_has_exams", "exams"
+  add_foreign_key "people_has_exams", "people"
+  add_foreign_key "people_has_subjects", "people"
+  add_foreign_key "people_has_subjects", "subjects"
+  add_foreign_key "semesters_has_exams", "exams"
+  add_foreign_key "semesters_has_exams", "semesters"
 end
