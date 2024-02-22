@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
   create_table "people_has_subjects", force: :cascade do |t|
     t.integer "person_id"
     t.integer "subject_id"
+    t.integer "classe", null: false
     t.index ["person_id"], name: "index_people_has_subjects_on_person_id"
     t.index ["subject_id"], name: "index_people_has_subjects_on_subject_id"
   end
