@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
   create_table "people_has_exams", force: :cascade do |t|
     t.integer "person_id"
     t.integer "exam_id"
+    t.float "grade"
     t.index ["exam_id"], name: "index_people_has_exams_on_exam_id"
     t.index ["person_id"], name: "index_people_has_exams_on_person_id"
   end
