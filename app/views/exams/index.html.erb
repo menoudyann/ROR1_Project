@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Exams</h1>
-
+<h1>Examens</h1>
 <div id="exams">
   <% @exams.each do |exam| %>
     <%= render exam %>
     <p>
-      <%= link_to "Show this exam", exam %>
+      <%= link_to "Voir l'examen", exam %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New exam", new_exam_path %>
+<%= link_to "Ajouter un examen", new_exam_path %>

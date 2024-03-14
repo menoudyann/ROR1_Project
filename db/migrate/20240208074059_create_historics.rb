@@ -6,7 +6,6 @@ class CreateHistorics < ActiveRecord::Migration[7.1]
       t.string :status
       t.string :class_name
       t.references :people, null: false, foreign_key: true
-
       t.timestamps
     end
   end

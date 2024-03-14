@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Localities</h1>
-
+<h1>Localités</h1>
 <div id="localities">
   <% @localities.each do |locality| %>
     <%= render locality %>
     <p>
-      <%= link_to "Show this locality", locality %>
+      <%= link_to "Voir la localité", locality %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New locality", new_locality_path %>
+<%= link_to "Ajouter une localité", new_locality_path %>

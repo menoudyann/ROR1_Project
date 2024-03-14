@@ -25,7 +25,7 @@ class SemestersController < ApplicationController
 
     respond_to do |format|
       if @semester.save
-        format.html { redirect_to semester_url(@semester), notice: "Semester was successfully created." }
+        format.html { redirect_to semesters_url, notice: "Semester was successfully created." }
         format.json { render :show, status: :created, location: @semester }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class SemestersController < ApplicationController
   def update
     respond_to do |format|
       if @semester.update(semester_params)
-        format.html { redirect_to semester_url(@semester), notice: "Semester was successfully updated." }
+        format.html { redirect_to semesters_url, notice: "Semester was successfully updated." }
         format.json { render :show, status: :ok, location: @semester }
       else
         format.html { render :edit, status: :unprocessable_entity }

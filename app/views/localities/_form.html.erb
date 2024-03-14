@@ -1,8 +1,7 @@
 <%= form_with(model: locality) do |form| %>
   <% if locality.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(locality.errors.count, "error") %> prohibited this locality from being saved:</h2>
-
+      <h2><%= pluralize(locality.errors.count, "error") %> n'a pas permis de sauver cet examen :</h2>
       <ul>
         <% locality.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,17 +9,14 @@
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :ZIP, style: "display: block" %>
     <%= form.text_area :ZIP %>
   </div>
-
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :locality, style: "display: block" %>
+    <%= form.text_field :locality %>
   </div>
-
   <div>
     <%= form.submit %>
   </div>

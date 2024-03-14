@@ -4,8 +4,7 @@ class CreateExams < ActiveRecord::Migration[7.1]
       t.datetime :date
       t.string :title
       t.decimal :coefficient
-      t.references :subject, null: false, foreign_key: true
-
+      t.references :course, null: false, foreign_key: true
       t.timestamps
     end
   end

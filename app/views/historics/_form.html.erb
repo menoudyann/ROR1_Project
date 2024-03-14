@@ -1,8 +1,7 @@
 <%= form_with(model: historic) do |form| %>
   <% if historic.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(historic.errors.count, "error") %> prohibited this historic from being saved:</h2>
-
+      <h2><%= pluralize(historic.errors.count, "error") %> n'a pas permis de sauver cet examen :</h2>
       <ul>
         <% historic.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,32 +9,26 @@
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :start_date, style: "display: block" %>
     <%= form.datetime_field :start_date %>
   </div>
-
   <div>
     <%= form.label :end_date, style: "display: block" %>
     <%= form.datetime_field :end_date %>
   </div>
-
   <div>
     <%= form.label :status, style: "display: block" %>
     <%= form.text_field :status %>
   </div>
-
   <div>
     <%= form.label :class_name, style: "display: block" %>
     <%= form.text_field :class_name %>
   </div>
-
   <div>
     <%= form.label :people_id, style: "display: block" %>
     <%= form.text_field :people_id %>
   </div>
-
   <div>
     <%= form.submit %>
   </div>

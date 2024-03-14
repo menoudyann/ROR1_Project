@@ -2,7 +2,6 @@
   <% if person.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
       <ul>
         <% person.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,52 +9,42 @@
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :gender, style: "display: block" %>
     <%= form.text_field :gender %>
   </div>
-
   <div>
     <%= form.label :first_name, style: "display: block" %>
     <%= form.text_area :first_name %>
   </div>
-
   <div>
     <%= form.label :last_name, style: "display: block" %>
     <%= form.text_area :last_name %>
   </div>
-
   <div>
     <%= form.label :birth_date, style: "display: block" %>
     <%= form.datetime_field :birth_date %>
   </div>
-
   <div>
     <%= form.label :address, style: "display: block" %>
     <%= form.text_area :address %>
   </div>
-
   <div>
     <%= form.label :phone_number, style: "display: block" %>
     <%= form.text_field :phone_number %>
   </div>
-
   <div>
     <%= form.label :email, style: "display: block" %>
     <%= form.text_area :email %>
   </div>
-
-  <div>
-    <%= form.label :is_teacher, style: "display: block" %>
-    <%= form.check_box :is_teacher %>
-  </div>
-
   <div>
     <%= form.label :locality_id, style: "display: block" %>
     <%= form.text_field :locality_id %>
   </div>
-
+  <div>
+    <%= form.label :role_id, style: "display: block" %>
+    <%= form.text_field :role_id %>
+  </div>
   <div>
     <%= form.submit %>
   </div>
