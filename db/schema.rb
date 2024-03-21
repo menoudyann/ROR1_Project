@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.boolean "is_archived", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_people", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "person_id", null: false
+    t.string "classe"
+    t.index ["course_id", "person_id"], name: "index_courses_people_on_course_id_and_person_id"
+    t.index ["person_id", "course_id"], name: "index_courses_people_on_person_id_and_course_id"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -26,6 +34,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_exams_on_course_id"
+  end
+
+  create_table "exams_people", id: false, force: :cascade do |t|
+    t.integer "exam_id", null: false
+    t.integer "person_id", null: false
+    t.decimal "grade"
+    t.index ["exam_id", "person_id"], name: "index_exams_people_on_exam_id_and_person_id"
+    t.index ["person_id", "exam_id"], name: "index_exams_people_on_person_id_and_exam_id"
+  end
+
+  create_table "exams_semesters", id: false, force: :cascade do |t|
+    t.integer "exam_id", null: false
+    t.integer "semester_id", null: false
+    t.index ["exam_id", "semester_id"], name: "index_exams_semesters_on_exam_id_and_semester_id"
+    t.index ["semester_id", "exam_id"], name: "index_exams_semesters_on_semester_id_and_exam_id"
   end
 
   create_table "historics", force: :cascade do |t|
@@ -55,25 +78,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
     t.string "phone_number"
     t.string "email"
     t.integer "locality_id", null: false
+    t.integer "role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["locality_id"], name: "index_people_on_locality_id"
-  end
-
-  create_table "people_has_exams", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "exam_id"
-    t.decimal "grade"
-    t.index ["exam_id"], name: "index_people_has_exams_on_exam_id"
-    t.index ["person_id"], name: "index_people_has_exams_on_person_id"
-  end
-
-  create_table "people_has_subjects", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "course_id"
-    t.string "classe", null: false
-    t.index ["course_id"], name: "index_people_has_subjects_on_course_id"
-    t.index ["person_id"], name: "index_people_has_subjects_on_person_id"
+    t.index ["role_id"], name: "index_people_on_role_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -89,20 +98,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_103722) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "semesters_has_exams", force: :cascade do |t|
-    t.integer "semester_id"
-    t.integer "exam_id"
-    t.index ["exam_id"], name: "index_semesters_has_exams_on_exam_id"
-    t.index ["semester_id"], name: "index_semesters_has_exams_on_semester_id"
-  end
-
   add_foreign_key "exams", "courses"
   add_foreign_key "historics", "people", column: "people_id"
   add_foreign_key "people", "localities"
-  add_foreign_key "people_has_exams", "exams"
-  add_foreign_key "people_has_exams", "people"
-  add_foreign_key "people_has_subjects", "courses"
-  add_foreign_key "people_has_subjects", "people"
-  add_foreign_key "semesters_has_exams", "exams"
-  add_foreign_key "semesters_has_exams", "semesters"
+  add_foreign_key "people", "roles"
 end

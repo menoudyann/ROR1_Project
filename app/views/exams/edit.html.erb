@@ -1,7 +1,9 @@
-<h1>Editing exam</h1>
-<%= render "form", exam: @exam %>
-<br>
-<div>
-  <%= link_to "Voir cet examen", @exam %> |
-  <%= link_to "Retourner aux examens", exams_path %>
+<div class="container mx-auto flex flex-col max-w-7xl p-6 lg:px-8">
+  <h1 class="text-2xl font-bold">Modifier l'examen</h1>
+  <%= render "form", exam: @exam %>
+  <br>
+  <div>
+    <%= link_to "Voir cet examen", @exam %> |
+    <%= link_to "Retourner aux examens", exams_path %>
+  </div>
 </div>

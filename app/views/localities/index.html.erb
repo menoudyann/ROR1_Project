@@ -3,9 +3,5 @@
 <div id="localities">
   <% @localities.each do |locality| %>
     <%= render locality %>
-    <p>
-      <%= link_to "Voir la localité", locality %>
-    </p>
   <% end %>
 </div>
-<%= link_to "Ajouter une localité", new_locality_path %>

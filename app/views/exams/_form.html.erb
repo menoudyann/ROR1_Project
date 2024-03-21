@@ -1,31 +1,32 @@
-<%= form_with(model: exam) do |form| %>
+<%= form_with(model: exam, class: "container ml-0 flex flex-col max-w-7xl py-2 w-1/2") do |form| %>
   <% if exam.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(exam.errors.count, "error") %> n'a pas permis de sauver cet examen :</h2>
-      <ul>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline"><%= pluralize(exam.errors.count, "error") %> n'a pas permis de sauver cet examen :</span>
+      <ul class="list-disc pl-5 mt-3">
         <% exam.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.datetime_field :date %>
+  <div class="mb-6">
+    <%= form.label :date, "Date", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.datetime_field :date, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="mb-6">
+    <%= form.label :title, "Titre", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
-  <div>
-    <%= form.label :coefficient, style: "display: block" %>
-    <%= form.text_field :coefficient %>
+  <div class="mb-6">
+    <%= form.label :coefficient, "Coefficient", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :coefficient, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
-  <div>
-    <%= form.label :course_id, style: "display: block" %>
-    <%= form.text_field :course_id %>
+  <div class="mb-6">
+    <%= form.label :course_id, "Cours", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :course_id, Course.all, :id, :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="flex items-center justify-between">
+    <%= form.submit "Sauvegarder l'examen", class: "bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
 <% end %>
