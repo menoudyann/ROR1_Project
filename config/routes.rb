@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :placements
+  resources :enrollments
+  devise_for :people
+  resources :grades
+  resources :classrooms
   resources :people
   resources :exams
   resources :courses

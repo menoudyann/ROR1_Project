@@ -23,29 +23,69 @@ localities.each do |locality|
 end
 
 # Seed roles table with 3 roles
-roles = ['Student', 'Teacher', 'Dean']
+roles = ['Étudiant', 'Enseignant', 'Doyen']
 
 roles.each do |role|
   Role.create!(role: role)
 end
 
-# Seed people table with 10 people
-locality = Locality.first
-role = Role.first
+# Seed a dean user by default
+default_locality = Locality.first
+dean_role = Role.find_by(role: "Doyen")
+teacher_role = Role.find_by(role: "Enseignant")
+student_role = Role.find_by(role: "Étudiant")
 
-20.times do |i|
-  Person.create!(
-    gender: ['Monsieur', 'Madame'].sample,
-    first_name: "Prénom#{i}",
-    last_name: "Nom#{i}",
-    birth_date: Date.today - (20 + i).years,
-    address: "Adresse #{i}",
-    phone_number: "0123456789#{i}",
-    email: "personne#{i}@exemple.com",
-    locality: locality,
-    role: role
-  )
-end
+dean = Person.create!(
+  gender: 'Homme',
+  first_name: 'Jean',
+  last_name: 'Dupont',
+  birth_date: DateTime.new(1970,1,1),
+  address: '123 Rue Principale',
+  phone_number: '+41794567890',
+  email: 'doyen@eduvaud.ch',
+  locality: default_locality,
+  :password => 'password',
+  role: dean_role
+)
+
+student = Person.create!(
+  gender: 'Homme',
+  first_name: 'Charles',
+  last_name: 'Chaplin',
+  birth_date: DateTime.new(1970,1,1),
+  address: '123 Rue Principale',
+  phone_number: '+41794567890',
+  email: 'etudiant@eduvaud.ch',
+  locality: default_locality,
+  :password => 'password',
+  role: student_role
+)
+
+student = Person.create!(
+  gender: 'Femme',
+  first_name: 'Emilie',
+  last_name: 'Durand',
+  birth_date: DateTime.new(1970,1,1),
+  address: '123 Rue Principale',
+  phone_number: '+41794567890',
+  email: 'etudiant2@eduvaud.ch',
+  locality: default_locality,
+  :password => 'password',
+  role: student_role
+)
+
+teacher = Person.create!(
+  gender: 'Femme',
+  first_name: 'Louise',
+  last_name: 'Bourgeois',
+  birth_date: DateTime.new(1970,1,1),
+  address: '123 Rue Principale',
+  phone_number: '+41794567890',
+  email: 'enseignant@eduvaud.ch',
+  locality: default_locality,
+  :password => 'password',
+  role: teacher_role
+)
 
 # Seed semesters table with 6 semesters
 semesters = [
@@ -119,3 +159,14 @@ localities = [
 localities.each do |locality|
   Locality.create!(ZIP: locality[:ZIP], locality: locality[:locality])
 end
+
+# Seed grades table with 10 grades
+Grade.create!(person_id: 2, exam_id: 1, grade: 5.0)
+Grade.create!(person_id: 2, exam_id: 2, grade: 4.0)
+Grade.create!(person_id: 2, exam_id: 3, grade: 5.5)
+Grade.create!(person_id: 2, exam_id: 4, grade: 5.5)
+Grade.create!(person_id: 2, exam_id: 5, grade: 5.0)
+Grade.create!(person_id: 3, exam_id: 6, grade: 2.0)
+Grade.create!(person_id: 3, exam_id: 7, grade: 2.5)
+Grade.create!(person_id: 3, exam_id: 8, grade: 4.0)
+Grade.create!(person_id: 3, exam_id: 9, grade: 4.5)

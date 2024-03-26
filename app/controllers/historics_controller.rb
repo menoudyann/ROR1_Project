@@ -65,6 +65,6 @@ class HistoricsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def historic_params
-      params.require(:historic).permit(:start_date, :end_date, :status, :class_name, :people_id)
+      params.require(:historic).permit(:student_first_name, :student_last_name, :exam_date, :exam_title, :grade, :semester, :year)
     end
 end

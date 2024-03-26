@@ -4,6 +4,7 @@ class SemestersController < ApplicationController
   # GET /semesters or /semesters.json
   def index
     @semesters = Semester.all
+    authorize :semester, :index?
   end
 
   # GET /semesters/1 or /semesters/1.json
@@ -13,15 +14,18 @@ class SemestersController < ApplicationController
   # GET /semesters/new
   def new
     @semester = Semester.new
+    authorize :semester, :new?
   end
 
   # GET /semesters/1/edit
   def edit
+    authorize @semester, :edit?
   end
 
   # POST /semesters or /semesters.json
   def create
     @semester = Semester.new(semester_params)
+    authorize @semester, :create?
 
     respond_to do |format|
       if @semester.save
@@ -36,6 +40,7 @@ class SemestersController < ApplicationController
 
   # PATCH/PUT /semesters/1 or /semesters/1.json
   def update
+    authorize @semester, :update?
     respond_to do |format|
       if @semester.update(semester_params)
         format.html { redirect_to semesters_url, notice: "Semester was successfully updated." }
@@ -50,6 +55,7 @@ class SemestersController < ApplicationController
   # DELETE /semesters/1 or /semesters/1.json
   def destroy
     @semester.destroy!
+    authorize @semester, :destroy?
 
     respond_to do |format|
       format.html { redirect_to semesters_url, notice: "Semester was successfully destroyed." }

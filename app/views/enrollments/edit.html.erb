@@ -1,0 +1,9 @@
+<div class="container mx-auto flex flex-col max-w-7xl p-6 lg:px-8">
+  <h1 class="text-2xl font-bold">Modifier l'inscription</h1>
+  <%= render "form", enrollment: @enrollment %>
+  <br>
+  <div>
+    <%= link_to "Voir cette inscription", @enrollment %> |
+    <%= link_to "Retour aux inscriptions", enrollments_path %>
+  </div>
+</div>

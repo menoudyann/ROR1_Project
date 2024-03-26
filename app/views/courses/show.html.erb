@@ -14,11 +14,15 @@
   </div>
   <div class="flex justify-between w-full">
     <div>
-      <%= link_to "Modifier ce cours", edit_course_path(@course), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2" %>
+      <% if current_person.dean? %>
+        <%= link_to "Modifier ce cours", edit_course_path(@course), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2" %>
+      <% end %>
       <%= link_to "Retour aux cours", courses_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2" %>
     </div>
     <div>
-      <%= button_to "Supprimer ce cours", @course, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600" %>
+      <% if current_person.dean? %>
+        <%= button_to "Supprimer ce cours", @course, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600" %>
+      <% end %>
     </div>
   </div>
 </div>

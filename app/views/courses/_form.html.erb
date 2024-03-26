@@ -15,11 +15,13 @@
     <%= form.text_field :name, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
   <div class="mb-6">
-    <%= form.label :is_archived, "Le cours est-il archivé ?" , class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.check_box :is_archived, class: "mr-2 leading-tight" %>
-    <span class="text-sm">Archiver ce cours</span>
+    <% if current_person.dean? %>
+      <%= form.label :is_archived, "Le cours est-il archivé ?" , class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.check_box :is_archived, class: "mr-2 leading-tight" %>
+      <span class="text-sm">Archiver ce cours</span>
+    <% end %>
   </div>
   <div class="flex items-center justify-between">
-    <%= form.submit "Save Course", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <%= form.submit "Sauvegarder le cours", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", style: "background-color: #00bf63 !important;" %>
   </div>
 <% end %>

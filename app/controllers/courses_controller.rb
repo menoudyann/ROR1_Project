@@ -4,24 +4,29 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
+    authorize :course, :index?
   end
 
   # GET /courses/1 or /courses/1.json
   def show
+    authorize @course, :show?
   end
 
   # GET /courses/new
   def new
     @course = Course.new
+    authorize @course, :new?
   end
 
   # GET /courses/1/edit
   def edit
+    authorize @course, :edit?
   end
 
   # POST /courses or /courses.json
   def create
     @course = Course.new(course_params)
+    authorize @course, :create?
 
     respond_to do |format|
       if @course.save
@@ -36,6 +41,7 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
+    authorize @course, :update?
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to courses_url, notice: "Course was successfully updated." }
@@ -50,6 +56,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy!
+    authorize @course, :destroy?
 
     respond_to do |format|
       format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }

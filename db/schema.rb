@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_24_092053) do
+  create_table "classrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.boolean "is_archived", default: false
@@ -18,12 +24,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "courses_people", id: false, force: :cascade do |t|
-    t.integer "course_id", null: false
+  create_table "enrollments", force: :cascade do |t|
     t.integer "person_id", null: false
-    t.string "classe"
-    t.index ["course_id", "person_id"], name: "index_courses_people_on_course_id_and_person_id"
-    t.index ["person_id", "course_id"], name: "index_courses_people_on_person_id_and_course_id"
+    t.integer "course_id", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["person_id"], name: "index_enrollments_on_person_id"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -36,30 +41,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
     t.index ["course_id"], name: "index_exams_on_course_id"
   end
 
-  create_table "exams_people", id: false, force: :cascade do |t|
-    t.integer "exam_id", null: false
-    t.integer "person_id", null: false
-    t.decimal "grade"
-    t.index ["exam_id", "person_id"], name: "index_exams_people_on_exam_id_and_person_id"
-    t.index ["person_id", "exam_id"], name: "index_exams_people_on_person_id_and_exam_id"
-  end
-
   create_table "exams_semesters", id: false, force: :cascade do |t|
     t.integer "exam_id", null: false
     t.integer "semester_id", null: false
-    t.index ["exam_id", "semester_id"], name: "index_exams_semesters_on_exam_id_and_semester_id"
-    t.index ["semester_id", "exam_id"], name: "index_exams_semesters_on_semester_id_and_exam_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "exam_id", null: false
+    t.decimal "grade"
+    t.index ["exam_id"], name: "index_grades_on_exam_id"
+    t.index ["person_id"], name: "index_grades_on_person_id"
   end
 
   create_table "historics", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.string "status"
-    t.string "class_name"
-    t.integer "people_id", null: false
+    t.string "student_first_name"
+    t.string "student_last_name"
+    t.datetime "exam_date"
+    t.string "exam_title"
+    t.integer "grade"
+    t.string "semester"
+    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["people_id"], name: "index_historics_on_people_id"
   end
 
   create_table "localities", force: :cascade do |t|
@@ -81,8 +85,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
     t.integer "role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["locality_id"], name: "index_people_on_locality_id"
     t.index ["role_id"], name: "index_people_on_role_id"
+  end
+
+  create_table "placements", force: :cascade do |t|
+    t.integer "person_id", null: false
+    t.integer "classroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_placements_on_classroom_id"
+    t.index ["person_id"], name: "index_placements_on_person_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -98,8 +114,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_14_114031) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "exams", "courses"
-  add_foreign_key "historics", "people", column: "people_id"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "people"
+  add_foreign_key "exams", "courses", on_delete: :cascade
+  add_foreign_key "grades", "exams"
+  add_foreign_key "grades", "people"
   add_foreign_key "people", "localities"
   add_foreign_key "people", "roles"
+  add_foreign_key "placements", "classrooms"
+  add_foreign_key "placements", "people"
 end
