@@ -1,0 +1,9 @@
+<div class="container mx-auto flex flex-col max-w-7xl p-6 lg:px-8">
+  <h1 class="text-2xl font-bold">Modifier la note</h1>
+  <%= render "form", grade: @grade %>
+  <br>
+  <div>
+    <%= link_to "Voir cette note", @grade %> |
+    <%= link_to "Retourner aux notes", grades_path %>
+  </div>
+</div>

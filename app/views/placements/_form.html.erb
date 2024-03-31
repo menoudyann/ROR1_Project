@@ -1,0 +1,24 @@
+<%= form_with(model: placement, class: "container ml-0 flex flex-col max-w-7xl py-2 w-1/2") do |form| %>
+  <% if placement.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline"><%= pluralize(placement.errors.count, "error") %> prohibited this placement from being saved:</span>
+      <ul class="list-disc pl-5 mt-3">
+        <% placement.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-6">
+    <%= form.label :person_id, "Personne", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :person_id, Person.all, :id, :full_name, {}, {class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :classroom_id, "Classe", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :to_s, {}, {class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+  </div>
+  <div class="flex items-center justify-between">
+    <%= form.submit "Sauvegarder", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", style: "background-color: #00bf63 !important;" %>
+  </div>
+<% end %>

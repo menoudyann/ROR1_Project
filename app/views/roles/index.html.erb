@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+<h1>Roles</h1>
+<div id="roles">
+  <% @roles.each do |role| %>
+    <%= render role %>
+    <p>
+      <%= link_to "Voir le role", role %>
+    </p>
+  <% end %>
+</div>
+<%= link_to "Ajouter un role", new_role_path %>

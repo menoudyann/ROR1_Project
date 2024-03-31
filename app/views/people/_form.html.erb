@@ -1,0 +1,56 @@
+<%= form_with(model: person, class: "container ml-0 flex flex-col max-w-7xl py-2 w-1/2") do |form| %>
+  <% if person.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline"><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</span>
+      <ul class="list-disc pl-5 mt-3">
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-6">
+    <%= form.label :gender, "Sexe", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :gender, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :first_name, "Prénom", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :first_name, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :last_name, "Nom", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :last_name, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :birth_date, "Date de naissance", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :birth_date, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :address, "Adresse", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :address, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :phone_number, "Numéro de téléphone", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :phone_number, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :email, "Email", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :email, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :password, "Mot de passe", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :locality_id, "Localité", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :locality_id, Locality.all, :id, :locality, class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :role_id, "Rôle", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :role_id, Role.all, :id, :role , class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="flex items-center justify-between">
+    <%= form.submit "Sauvegarder", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", style: "background-color: #00bf63 !important;" %>
+  </div>
+<% end %>

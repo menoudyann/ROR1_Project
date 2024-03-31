@@ -1,0 +1,19 @@
+<div id="<%= dom_id classroom %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Nom:</strong>
+    <%= classroom.name %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date de début:</strong>
+    <%= classroom.promotion_start_date %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date de fin:</strong>
+    <%= classroom.promotion_end_date %>
+  </p>
+  <% if action_name != "show" %>
+    <%= link_to "Voir cette classe", classroom, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Modifier cette classe", edit_classroom_path(classroom), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

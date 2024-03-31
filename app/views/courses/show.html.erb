@@ -1,0 +1,28 @@
+<div class="container mx-auto flex flex-col max-w-7xl p-6 lg:px-8 h-screen ">
+  <% if notice.present? %>
+    <div id="notice" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 transition-opacity duration-500" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <div class="flex justify-between w-full">
+    <div>
+      <h1 class="text-2xl font-bold">Détails du cours</h1>
+    </div>
+  </div>
+  <div class="my-4">
+    <%= render @course %>
+  </div>
+  <div class="flex justify-between w-full">
+    <div>
+      <% if current_person.dean? %>
+        <%= link_to "Modifier ce cours", edit_course_path(@course), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2" %>
+      <% end %>
+      <%= link_to "Retour aux cours", courses_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2" %>
+    </div>
+    <div>
+      <% if current_person.dean? %>
+        <%= button_to "Supprimer ce cours", @course, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600" %>
+      <% end %>
+    </div>
+  </div>
+</div>
