@@ -50,11 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_123811) do
     t.index ["semester_id"], name: "index_exams_on_semester_id"
   end
 
-  create_table "exams_semesters", id: false, force: :cascade do |t|
-    t.integer "exam_id", null: false
-    t.integer "semester_id", null: false
-  end
-
   create_table "grades", force: :cascade do |t|
     t.integer "person_id", null: false
     t.integer "exam_id", null: false

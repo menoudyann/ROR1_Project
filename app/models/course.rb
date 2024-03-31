@@ -1,7 +1,7 @@
 class Course < ApplicationRecord
   # Associations
-  has_many :enrollments
-  has_many :exams
+  has_many :enrollments, dependent: :destroy
+  has_many :exams, dependent: :destroy
   has_many :classrooms, through: :enrollments
   has_and_belongs_to_many :semesters
 
