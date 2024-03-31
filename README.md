@@ -68,4 +68,4 @@ barberinin@eduvaud.ch
 
 ## Schemas
 
-You can find the different database schemas in [/docs]()
+You can find the different database schemas in [/docs](https://github.com/menoudyann/ROR1_Project/tree/main/docs)
