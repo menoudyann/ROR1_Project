@@ -1,6 +1,6 @@
 class Exam < ApplicationRecord
   # Associations
-  has_many :grades
+  has_many :grades, dependent: :destroy
   belongs_to :course
   belongs_to :semester
   has_many :people, through: :grades

@@ -1,6 +1,6 @@
 class Semester < ApplicationRecord
   # Associations
-  has_many :exams
+  has_many :exams, dependent: :destroy
   has_and_belongs_to_many :courses
 
   # Validations

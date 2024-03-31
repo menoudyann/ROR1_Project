@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this project, we will implement an application using Ruby on Rails that uses the database that we had created in the module SQL1.
+In this project, we will implement an application using Ruby on Rails that uses the database that we had created in the module SQL1. This is a mini intranet for managing application development technician classes. 
 
 ## Database
 
@@ -69,3 +69,9 @@ barberinin@eduvaud.ch
 ## Schemas
 
 You can find the different database schemas in [/docs](https://github.com/menoudyann/ROR1_Project/tree/main/docs)
+
+## External gems
+
+[Pundit](https://github.com/varvet/pundit) - Handle the rights on resources.
+
+[Devise](https://github.com/heartcombo/devise) - Handle the auth.
