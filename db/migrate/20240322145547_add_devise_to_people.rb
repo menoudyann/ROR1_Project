@@ -5,10 +5,8 @@ class AddDeviseToPeople < ActiveRecord::Migration[7.1]
     change_table :people do |t|
       ## Database authenticatable
       t.string :encrypted_password, null: false, default: ""
-
       ## Rememberable
       t.datetime :remember_created_at
-
     end
 
     add_index :people, :email,                unique: true

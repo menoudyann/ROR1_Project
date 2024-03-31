@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :people
   resources :placements
   resources :enrollments
-  devise_for :people
   resources :grades
   resources :classrooms
   resources :people
   resources :exams
   resources :courses
   resources :semesters
-  resources :historics
   resources :localities, only: [:index]
   resources :roles
 
@@ -19,5 +18,16 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "people#index"
+  # root "people#index"
+
+  # Redirect authenticated users to people#index
+  authenticated :person do
+    root to: "people#index", as: :authenticated_root
+  end
+
+  # Redirect unauthenticated users to people#new
+  unauthenticated :person do
+    root "people#new", as: :unauthenticated_root
+  end
+
 end

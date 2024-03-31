@@ -1,13 +1,18 @@
 class GradesController < ApplicationController
   before_action :set_grade, only: %i[ show edit update destroy ]
 
+  # GET /grades or /grades.json
+  # Depending on the role of the current person, the grades
+  # displayed will be different. A student will only see their
+  # grades, a teacher will see the grades of their students, and
+  # a dean will see all the grades.
   def index
     authorize :grade, :index?
     if current_person.student?
       @grades = current_person.grades
     elsif current_person.teacher?
-      @grades = Grade.all
-    else
+      @grades = Person.students_in_teacher_classes(current_person).map(&:grades).flatten
+    elsif current_person.dean?
       @grades = Grade.all
     end
   end

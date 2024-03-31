@@ -1,7 +1,8 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New placement</h1>
-
+<div class="container mx-auto flex flex-col max-w-7xl p-6 lg:px-8">
+  <h1 class="text-2xl font-bold">Nouveau placement</h1>
   <%= render "form", placement: @placement %>
-
-  <%= link_to "Back to placements", placements_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <br>
+  <div>
+    <%= link_to "Retour aux placements", placements_path %>
+  </div>
 </div>

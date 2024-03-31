@@ -12,6 +12,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1 or /people/1.json
   def show
+    @grades = @person.grades
     authorize @person, :show?
   end
 

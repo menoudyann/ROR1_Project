@@ -1,5 +1,11 @@
 class GradePolicy < ApplicationPolicy
 
+  # In this class, we define the rules for who can do what with the Grade model.
+  # The methods in this class are called by the controller actions to check if the current user is allowed to perform the action.
+  # The `user` method is provided by the `ApplicationPolicy` class and returns
+  # https://github.com/varvet/pundit
+
+
   def index?
     true
   end

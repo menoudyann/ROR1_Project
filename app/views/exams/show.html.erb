@@ -14,11 +14,15 @@
   </div>
   <div class="flex justify-between w-full">
     <div>
-      <%= link_to "Modifier cet examen", edit_exam_path(@exam), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2" %>
+      <% if current_person.dean? || current_person.teacher? %>
+        <%= link_to "Modifier cet examen", edit_exam_path(@exam), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mr-2" %>
+      <% end %>
       <%= link_to "Retourner aux examens", exams_path, class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2" %>
     </div>
     <div>
-      <%= button_to "Supprimer cet examen", @exam, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600" %>
+      <% if current_person.dean? || current_person.teacher? %>
+        <%= button_to "Supprimer cet examen", @exam, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600" %>
+      <% end %>
     </div>
   </div>
 </div>

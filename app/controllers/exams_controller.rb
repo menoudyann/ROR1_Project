@@ -9,24 +9,24 @@ class ExamsController < ApplicationController
 
   # GET /exams/1 or /exams/1.json
   def show
-    authorize :exam, :index?
+    authorize :exam, :show?
   end
 
   # GET /exams/new
   def new
     @exam = Exam.new
-    authorize :exam, :index?
+    authorize :exam, :new?
   end
 
   # GET /exams/1/edit
   def edit
-    authorize :exam, :index?
+    authorize :exam, :edit?
   end
 
   # POST /exams or /exams.json
   def create
     @exam = Exam.new(exam_params)
-    authorize :exam, :index?
+    authorize :exam, :create?
 
     respond_to do |format|
       if @exam.save
@@ -41,7 +41,7 @@ class ExamsController < ApplicationController
 
   # PATCH/PUT /exams/1 or /exams/1.json
   def update
-    authorize :exam, :index?
+    authorize :exam, :create?
     respond_to do |format|
       if @exam.update(exam_params)
         format.html { redirect_to exam_url(@exam), notice: "Exam was successfully updated." }
@@ -56,7 +56,7 @@ class ExamsController < ApplicationController
   # DELETE /exams/1 or /exams/1.json
   def destroy
     @exam.destroy!
-    authorize :exam, :index?
+    authorize :exam, :destroy?
 
     respond_to do |format|
       format.html { redirect_to exams_url, notice: "Exam was successfully destroyed." }

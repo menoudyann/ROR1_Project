@@ -11,8 +11,8 @@
     </div>
   <% end %>
   <div class="mb-6">
-    <%= form.label :person_id, "Enseignant", class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.collection_select :person_id, Person.all.teachers, :id, :full_name, {}, {class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
+    <%= form.label :classroom_id, "Classe", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.collection_select :classroom_id, Classroom.all, :id, :full_name, {}, {class: "shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} %>
   </div>
   <div class="mb-6">
     <%= form.label :course_id, "Cours", class: "block text-gray-700 text-sm font-bold mb-2" %>

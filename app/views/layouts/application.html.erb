@@ -31,12 +31,17 @@
             </button>
           </div>
           <div class="hidden lg:flex lg:gap-x-12">
-            <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(root_path) %> hover:bg-gray-50">Accueil</a>
+            <% if person_signed_in? %>
+              <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(authenticated_root_path) %> hover:bg-gray-50">Accueil</a>
+            <% else %>
+              <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(unauthenticated_root_path) %> hover:bg-gray-50">Accueil</a>
+            <% end %>
             <a href="/exams" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(exams_path) %> hover:bg-gray-50">Examens</a>
             <a href="/courses" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(courses_path) %> hover:bg-gray-50">Cours</a>
             <% if current_person.dean? %>
               <a href="/semesters" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(semesters_path) %> hover:bg-gray-50">Semestres</a>
-              <a href="/enrollments" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(enrollments_path) %> hover:bg-gray-50">Assignations</a>
+              <a href="/enrollments" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(enrollments_path) %> hover:bg-gray-50">Enrollments</a>
+              <a href="/placements" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(placements_path) %> hover:bg-gray-50">Placements</a>
             <% end %>
             <a href="/grades" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(grades_path) %> hover:bg-gray-50">Notes</a>
           </div>
@@ -65,16 +70,21 @@
               </button>
             </div>
             <div class="mt-6 flow-root">
-              <div class="-my-6 divide-y divide-gray-500/10">ds
+              <div class="-my-6 divide-y divide-gray-500/10">
                 <div class="space-y-2 py-6">
-                  <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(root_path) %>">Accueil</a>
+                  <% if person_signed_in? %>
+                    <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(authenticated_root_path) %>">Accueil</a>
+                  <% else %>
+                    <a href="/" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(unauthenticated_root_path) %>">Accueil</a>
+                  <% end %>
                   <a href="/exams" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(exams_path) %> hover:bg-gray-50">Examens</a>
                   <a href="/courses" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(courses_path) %> hover:bg-gray-50">Branches</a>
                   <% if current_person.dean? %>
                     <a href="/semesters" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(semesters_path) %> hover:bg-gray-50">Semestres</a>
                   <% end %>
                   <a href="/grades" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(grades_path) %> hover:bg-gray-50">Notes</a>
-                  <a href="/enrollments" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(enrollments_path) %> hover:bg-gray-50">Assignations</a>
+                  <a href="/enrollments" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(enrollments_path) %> hover:bg-gray-50">Enrollments</a>
+                  <a href="/placements" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 <%= 'text-green-500' if current_page?(placements_path) %> hover:bg-gray-50">Placements</a>
                 </div>
                 <div class="py-6">
                   <% if person_signed_in? %>
@@ -117,7 +127,10 @@
                   <a href="/semesters" class="hover:underline me-4 md:me-6">Semestres</a>
                 </li>
                 <li>
-                  <a href="/enrollments" class="hover:underline me-4 md:me-6">Assignations</a>
+                  <a href="/enrollments" class="hover:underline me-4 md:me-6">Enrollments</a>
+                </li>
+                <li>
+                  <a href="/placements" class="hover:underline me-4 md:me-6">Placements</a>
                 </li>
               <% end %>
               <li>

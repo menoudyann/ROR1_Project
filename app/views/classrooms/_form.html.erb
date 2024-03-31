@@ -1,19 +1,28 @@
-<%= form_with(model: classroom, class: "contents") do |form| %>
+<%= form_with(model: classroom, class: "container ml-0 flex flex-col max-w-7xl py-2 w-1/2") do |form| %>
   <% if classroom.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(classroom.errors.count, "error") %> prohibited this classroom from being saved:</h2>
-      <ul>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Oops!</strong>
+      <span class="block sm:inline"><%= pluralize(classroom.errors.count, "error") %> prohibited this classroom from being saved:</span>
+      <ul class="list-disc pl-5 mt-3">
         <% classroom.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="mb-6">
+    <%= form.label :name, "Nom", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :name, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" , style: "background-color: #00bf63 !important;" %>
+  <div class="mb-6">
+    <%= form.label :promotion_start_date, "Date de début de promotion", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :promotion_start_date, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-6">
+    <%= form.label :promotion_end_date, "Date de fin de promotion", class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :promotion_end_date, class: "shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="flex items-center justify-between">
+    <%= form.submit "Sauvegarder la classe", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", style: "background-color: #00bf63 !important;" %>
   </div>
 <% end %>
